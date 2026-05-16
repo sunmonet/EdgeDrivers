@@ -101,7 +101,10 @@ jobs:
           key: stcli-latest
       - name: Download SmartThings CLI
         if: steps.stcli.outputs.cache-hit != 'true'
-        run: wget https://github.com/SmartThingsCommunity/smartthings-cli/releases/latest/download/smartthings-linux-x64.tar.gz -O - | tar -xz
+        run: |
+          curl -L https://github.com/SmartThingsCommunity/smartthings-cli/releases/download/@smartthings/cli@2.1.6/smartthings-linux-x64.tar.gz -o stcli.tar.gz
+          tar -xzf stcli.tar.gz
+          rm stcli.tar.gz
       - name: Load capabilities from cache
         uses: actions/cache@v3
         id: capabilities

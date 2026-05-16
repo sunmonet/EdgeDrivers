@@ -18,7 +18,7 @@ on:
 
 jobs:
   driver:
-    uses: ./.github/workflows/call-publish-driver.yaml
+    uses: ./.github/workflows/call-test-driver.yaml
     with:
       driver: personal-tuya-devices
       version: multiple

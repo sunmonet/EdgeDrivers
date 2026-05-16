@@ -177,8 +177,12 @@ local defaults = {
     rate = 100,
     to_zigbee = function (self, value, device)
       local pref = get_child_or_parent(device, self.group).preferences
-      return tuya_types.Int32(math.floor(to_number(value) * get_value(pref[self.rate_name], self.rate) / 100))
-    end,
+
+      local max = pref.prefMaximumLevel or 95
+      value = math.min(to_number(value), max)
+
+      return tuya_types.Int32(math.floor(value * get_value(pref[self.rate_name], self.rate)))
+end,
     from_zigbee = function (self, value, device)
       local pref = get_child_or_parent(device, self.group).preferences
       return math.floor(100 * to_number(value) / get_value(pref[self.rate_name], self.rate))

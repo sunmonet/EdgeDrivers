@@ -17,3 +17,9 @@ datapoints:
       group: 2
       rate: 1000
       name: minimum_level
+  - id: 4
+    command: switchLevel
+    base:
+      group: 2
+      rate: 1000
+      name: maximum_level
